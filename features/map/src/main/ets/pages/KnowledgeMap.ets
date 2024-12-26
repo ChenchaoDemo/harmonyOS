@@ -2,7 +2,9 @@ import { KnowledgeMapContent, Section } from '../view/KnowledgeMapContent';
 import { NavBarItem, NavBarItemType } from '../view/NavBarItem';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
+import { OtherDetailPage } from '../view/OtherDetailPage';
 
+@Preview
 @Component
 export struct KnowledgeMap {
   @State navBarList: NavBarItemType[] = [
@@ -38,6 +40,8 @@ export struct KnowledgeMap {
   PageMap(name: string) {
     if (name === 'KnowledgeMapContent') {
       KnowledgeMapContent({ section: this.sections[this.currentNavBarIndex] });
+    }else if (name === 'otherDetailPage'){
+      OtherDetailPage()
     }
   }
 
@@ -63,6 +67,14 @@ export struct KnowledgeMap {
             .fontColor('rgba(0,0,0,0.60)')
             .fontWeight(400)
             .textAlign(TextAlign.Start)
+
+          Text('进入自己设计的页面')
+            .margin({
+              top:12
+            })
+            .onClick(() => {
+              this.knowledgeMapPageStack.pushPathByName('otherDetailPage','https://www.baidu.com/');
+            })
 
           List({ space: 12 }) {
             ForEach(this.navBarList, (item: NavBarItemType, index: number) => {
@@ -92,7 +104,7 @@ export struct KnowledgeMap {
     }
     .mode(NavigationMode.Stack)
     .hideTitleBar(true)
-    .navDestination(this.PageMap)
+    .navDestination(this.PageMap)  //指定路由
     .navBarWidth(288)
   }
 }

@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.harmonyos",
-    "patchVersionCode": 2000016,
+    "bundleName": "com.huawei.quickstart",
+    "patchVersionCode": 2000032,
     "versionCode": 1000000
   },
   "module": {
