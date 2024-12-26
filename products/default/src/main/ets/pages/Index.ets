@@ -1,12 +1,12 @@
 import { CourseLearning } from 'learning';
-import { QuickStartPage } from 'quickstart';
 import { KnowledgeMap } from 'map';
+import { QuickStartPage } from 'quickstart';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
   @State currentIndex: number = 0;
-  private tabsController : TabsController = new TabsController();
+  private tabsController: TabsController = new TabsController();
 
   @Builder
   tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
@@ -33,7 +33,7 @@ struct Index {
   }
 
   build() {
-    Tabs({ barPosition: BarPosition.End ,controller:this.tabsController}){
+    Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       TabContent() {
         QuickStartPage()
       }
@@ -42,31 +42,20 @@ struct Index {
       TabContent() {
         CourseLearning()
       }
-      .tabBar(this.tabBarBuilder('课程学习', 1, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+      .tabBar(this.tabBarBuilder('课程学习', 1, $r('app.media.ic_02_on'), $r('app.media.ic_02_off')))
 
       TabContent() {
         KnowledgeMap()
       }
-      .tabBar(this.tabBarBuilder('知识地图', 2, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+      .tabBar(this.tabBarBuilder('知识地图', 2, $r('app.media.ic_03_on'), $r('app.media.ic_03_off')))
     }
-    .scrollable(false)
     .vertical(false)
     .divider({
       strokeWidth: 0.5,
       color: '#0D182431'
     })
+    .scrollable(false)
     .backgroundColor('#F1F3F5')
     .padding({ top: 36, bottom: 28 })
-
-
-
-
-    // Column() {
-    //   // QuickStartPage()
-    //   // CourseLearning()
-    //   KnowledgeMap()
-    // }
-    // .backgroundColor('#F1F3F5')
-    // .padding({ top: 36, bottom: 28 })
   }
 }

@@ -1,4 +1,3 @@
-
 {
   "name": "default",
   "version": "1.0.0",
@@ -8,7 +7,9 @@
   "license": "",
   "dependencies": {
     "learning": "file:../../features/learning",
+    "quickstart": "file:../../features/quickstart",
     "map": "file:../../features/map",
-    "quickstart": "file:../../features/quickstart"
+    "utils": "file:../../commons/utils",
+    "uicomponents": "file:../../commons/uicomponents"
   }
 }

@@ -7,8 +7,7 @@
     "deviceTypes": [
       "phone",
       "tablet",
-      "2in1",
-      "car"
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -20,8 +19,10 @@
         "description": "$string:EntryAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:ic_start_icon",
         "startWindowBackground": "$color:start_window_background",
+        "minWindowWidth": 520,
+        "minWindowHeight": 720,
         "exported": true,
         "skills": [
           {
@@ -46,7 +47,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ]
+        ],
       }
     ],
     "requestPermissions": [
@@ -55,6 +56,5 @@
         "reason": "$string:apply_for_network"
       }
     ]
-
   }
 }

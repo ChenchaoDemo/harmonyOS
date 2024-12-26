@@ -3,16 +3,21 @@ import { bufferToString } from '../util/BufferUtil';
 
 @Component
 export struct Banner {
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
   @State bannerList: BannerClass[] = [];
 
   aboutToAppear(): void {
-    this.getBannerDataFromJSON();
+    this.getBannerDataFromJSON()
   }
 
   getBannerDataFromJSON() {
     getContext(this).resourceManager.getRawFileContent('BannerData.json').then(value => {
       this.bannerList = JSON.parse(bufferToString(value)) as BannerClass[];
     })
+  }
+
+  clickToDetailPage(item: BannerClass) {
+    this.articlePathStack.pushPathByName('bannerDetailPage', item);
   }
 
   build() {
@@ -23,6 +28,10 @@ export struct Banner {
           .width('100%')
           .borderRadius(16)
           .padding({ top: 11, left: 16, right: 16 })
+          .onClick(() => {
+            this.clickToDetailPage(item)
+          })
+
       }, (item: BannerClass) => item.id)
     }
     .autoPlay(true)

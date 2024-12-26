@@ -1,9 +1,10 @@
-import { ArticleClass } from '../model/ArticleClass';
 import { bufferToString } from '../util/BufferUtil';
+import { ArticleClass } from '../model/ArticleClass';
 
 @Component
 export struct TutorialView {
-  @State tutorialList: Array<ArticleClass> = [];
+  @State tutorialList: ArticleClass[] = [];
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
 
   aboutToAppear(): void {
     this.getTutorialDataFromJSON()
@@ -23,13 +24,16 @@ export struct TutorialView {
         .fontWeight(500)
         .fontFamily('HarmonyHeiTi-medium')
         .textAlign(TextAlign.Start)
-        .padding({ left: 16 })
-        .margin({ bottom: 8.5 })
+        .padding({ left: 16, right: 16 })
+        .width('100%')
 
       List({ space: 12 }) {
         ForEach(this.tutorialList, (item: ArticleClass) => {
           ListItem() {
             TutorialItem({ tutorialItem: item })
+              .onClick(() => {
+                this.articlePathStack.pushPathByName('articleDetail', item)
+              })
           }
         }, (item: ArticleClass) => item.id)
       }
@@ -42,7 +46,7 @@ export struct TutorialView {
 }
 
 @Component
-struct TutorialItem {
+export struct TutorialItem {
   @Prop tutorialItem: ArticleClass;
 
   build() {
@@ -57,6 +61,7 @@ struct TutorialItem {
           .maxLines(1)
           .fontWeight(400)
           .margin({ top: 4 })
+
         Text(this.tutorialItem.brief)
           .height(32)
           .width('100%')
@@ -74,9 +79,9 @@ struct TutorialItem {
       .margin({ right: 12 })
 
       Image($r(this.tutorialItem.imageSrc))
+        .objectFit(ImageFit.Cover)
         .height(64)
         .width(108)
-        .objectFit(ImageFit.Cover)
         .borderRadius(16)
     }
     .width('100%')

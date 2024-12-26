@@ -12,4 +12,4 @@ export class ArticleClass {
     this.brief = brief;
     this.webUrl = webUrl;
   }
-}
+} 

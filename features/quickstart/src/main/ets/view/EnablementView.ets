@@ -3,7 +3,8 @@ import { bufferToString } from '../util/BufferUtil';
 
 @Component
 export struct EnablementView {
-  @State enablementList: Array<ArticleClass> = [];
+  @State enablementList: ArticleClass[] = [];
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
 
   aboutToAppear(): void {
     this.getEnablementDataFromJSON()
@@ -23,12 +24,15 @@ export struct EnablementView {
         .fontWeight(500)
         .fontFamily('HarmonyHeiTi-medium')
         .textAlign(TextAlign.Start)
-        .padding({ left: 16 })
-        .margin({ bottom: 8.5 })
+        .padding({ left: 16, right: 16 })
+        .width('100%')
       Grid() {
         ForEach(this.enablementList, (item: ArticleClass) => {
           GridItem() {
             EnablementItem({ enablementItem: item })
+              .onClick(() => {
+                this.articlePathStack.pushPathByName('articleDetail', item)
+              })
           }
         }, (item: ArticleClass) => item.id)
       }
@@ -37,16 +41,13 @@ export struct EnablementView {
       .scrollBar(BarState.Off)
       .height(169)
       .padding({ top: 2, left: 16, right: 16 })
-
     }
     .margin({ top: 18 })
-    .alignItems(HorizontalAlign.Start)
   }
 }
 
-
 @Component
-struct EnablementItem {
+export struct EnablementItem {
   @Prop enablementItem: ArticleClass;
 
   build() {
@@ -54,7 +55,7 @@ struct EnablementItem {
       Image($r(this.enablementItem.imageSrc))
         .width('100%')
         .objectFit(ImageFit.Cover)
-		.height(96)
+        .height(96)
         .borderRadius({
           topLeft: 16,
           topRight: 16
