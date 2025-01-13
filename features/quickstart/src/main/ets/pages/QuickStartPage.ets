@@ -48,6 +48,6 @@ export struct QuickStartPage {
     }
     .navDestination(this.quickStartRouter)
     .hideTitleBar(true)
-    .mode(NavigationMode.Stack)
+    .mode(NavigationMode.Auto)
   }
 }

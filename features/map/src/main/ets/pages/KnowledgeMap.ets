@@ -102,7 +102,7 @@ export struct KnowledgeMap {
       .scrollBarColor(Color.Gray)
       .edgeEffect(EdgeEffect.Spring)
     }
-    .mode(NavigationMode.Stack)
+    .mode(NavigationMode.Auto)
     .hideTitleBar(true)
     .navDestination(this.PageMap)  //指定路由
     .navBarWidth(288)

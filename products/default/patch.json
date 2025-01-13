@@ -1,7 +1,7 @@
 {
   "app": {
     "bundleName": "com.huawei.quickstart",
-    "patchVersionCode": 2000032,
+    "patchVersionCode": 2000037,
     "versionCode": 1000000
   },
   "module": {
